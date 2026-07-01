@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings version="1">
+  <section id="service.keyboardbattery">
+
+    <category id="home" label="30004">
+      <group id="1" label="30060">
+        <setting id="show_state" type="action" label="30061" help="30063">
+          <level>0</level>
+          <data>RunScript(service.keyboardbattery,status)</data>
+          <control type="button" format="action"><close>false</close></control>
+        </setting>
+      </group>
+    </category>
+
+    <category id="general" label="30001">
+      <group id="1">
+        <setting id="mac" type="string" label="30020" help="30100">
+          <level>0</level>
+          <default>DE:0B:86:8D:CE:16</default>
+          <constraints><allowempty>true</allowempty></constraints>
+          <control type="edit" format="string">
+            <heading>30040</heading>
+          </control>
+        </setting>
+        <setting id="interval" type="integer" label="30021" help="30101">
+          <level>0</level>
+          <default>30</default>
+          <constraints><minimum>5</minimum><step>5</step><maximum>180</maximum></constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+      </group>
+    </category>
+
+    <category id="notifications" label="30002">
+      <group id="1" label="30010">
+        <setting id="notify_startup" type="boolean" label="30022" help="30102">
+          <level>0</level><default>true</default>
+          <control type="toggle"/>
+        </setting>
+        <setting id="msg_startup" type="string" label="30023" help="30103">
+          <level>0</level>
+          <default>Batterie clavier : {pct}%</default>
+          <constraints><allowempty>true</allowempty></constraints>
+          <dependencies><dependency type="enable" setting="notify_startup">true</dependency></dependencies>
+          <control type="edit" format="string"><heading>30041</heading></control>
+        </setting>
+      </group>
+
+      <group id="2" label="30011">
+        <setting id="notify_threshold" type="boolean" label="30024" help="30104">
+          <level>0</level><default>true</default>
+          <control type="toggle"/>
+        </setting>
+        <setting id="threshold_pct" type="integer" label="30025" help="30105">
+          <level>0</level><default>80</default>
+          <dependencies><dependency type="enable" setting="notify_threshold">true</dependency></dependencies>
+          <constraints><minimum>20</minimum><step>5</step><maximum>95</maximum></constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="msg_threshold" type="string" label="30026" help="30106">
+          <level>0</level>
+          <default>Batterie clavier : {pct}%</default>
+          <constraints><allowempty>true</allowempty></constraints>
+          <dependencies><dependency type="enable" setting="notify_threshold">true</dependency></dependencies>
+          <control type="edit" format="string"><heading>30041</heading></control>
+        </setting>
+      </group>
+
+      <group id="3" label="30012">
+        <setting id="notify_critical" type="boolean" label="30027" help="30107">
+          <level>0</level><default>true</default>
+          <control type="toggle"/>
+        </setting>
+        <setting id="critical_pct" type="integer" label="30028" help="30108">
+          <level>0</level><default>15</default>
+          <dependencies><dependency type="enable" setting="notify_critical">true</dependency></dependencies>
+          <constraints><minimum>5</minimum><step>5</step><maximum>30</maximum></constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="msg_critical" type="string" label="30029" help="30109">
+          <level>0</level>
+          <default>Batterie clavier presque vide : {pct}% - rechargez</default>
+          <constraints><allowempty>true</allowempty></constraints>
+          <dependencies><dependency type="enable" setting="notify_critical">true</dependency></dependencies>
+          <control type="edit" format="string"><heading>30041</heading></control>
+        </setting>
+      </group>
+    </category>
+
+    <category id="appearance" label="30003">
+      <group id="1">
+        <setting id="notif_title" type="string" label="30030" help="30110">
+          <level>0</level><default></default>
+          <constraints><allowempty>true</allowempty></constraints>
+          <control type="edit" format="string"><heading>30042</heading></control>
+        </setting>
+        <setting id="notif_duration" type="integer" label="30031" help="30111">
+          <level>0</level><default>8</default>
+          <constraints><minimum>2</minimum><step>1</step><maximum>30</maximum></constraints>
+          <control type="slider" format="integer"><popup>false</popup></control>
+        </setting>
+        <setting id="notif_sound" type="boolean" label="30032" help="30112">
+          <level>0</level><default>true</default>
+          <control type="toggle"/>
+        </setting>
+      </group>
+      <group id="2">
+        <setting id="test" type="action" label="30033" help="30113">
+          <level>0</level>
+          <data>RunScript(service.keyboardbattery,test)</data>
+          <control type="button" format="action"><close>false</close></control>
+        </setting>
+      </group>
+    </category>
+
+  </section>
+</settings>

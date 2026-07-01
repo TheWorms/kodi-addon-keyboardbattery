@@ -1,0 +1,177 @@
+# Kodi Media Center language file
+# Addon Name: Keyboard Battery Monitor
+msgid ""
+msgstr ""
+"Project-Id-Version: service.keyboardbattery\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_fr\n"
+
+msgctxt "#30001"
+msgid "Keyboard"
+msgstr "Clavier"
+
+msgctxt "#30002"
+msgid "Notifications"
+msgstr "Notifications"
+
+msgctxt "#30003"
+msgid "Appearance"
+msgstr "Apparence"
+
+msgctxt "#30010"
+msgid "Startup"
+msgstr "Démarrage"
+
+msgctxt "#30011"
+msgid "Warning threshold"
+msgstr "Seuil d'alerte"
+
+msgctxt "#30012"
+msgid "Critical alert"
+msgstr "Alerte critique"
+
+msgctxt "#30020"
+msgid "Keyboard MAC address"
+msgstr "Adresse MAC du clavier"
+
+msgctxt "#30021"
+msgid "Check interval (minutes)"
+msgstr "Intervalle de vérification (minutes)"
+
+msgctxt "#30022"
+msgid "Notify battery at startup"
+msgstr "Notifier la batterie au démarrage"
+
+msgctxt "#30023"
+msgid "Startup message"
+msgstr "Message de démarrage"
+
+msgctxt "#30024"
+msgid "Enable threshold alert"
+msgstr "Activer l'alerte de seuil"
+
+msgctxt "#30025"
+msgid "Warning threshold (%)"
+msgstr "Seuil d'alerte (%)"
+
+msgctxt "#30026"
+msgid "Warning message"
+msgstr "Message d'alerte"
+
+msgctxt "#30027"
+msgid "Enable critical alert"
+msgstr "Activer l'alerte critique"
+
+msgctxt "#30028"
+msgid "Critical threshold (%)"
+msgstr "Seuil critique (%)"
+
+msgctxt "#30029"
+msgid "Critical message"
+msgstr "Message critique"
+
+msgctxt "#30030"
+msgid "Notifications title"
+msgstr "Titre des notifications"
+
+msgctxt "#30031"
+msgid "Display duration (seconds)"
+msgstr "Durée d'affichage (secondes)"
+
+msgctxt "#30032"
+msgid "Notification sound"
+msgstr "Son de notification"
+
+msgctxt "#30033"
+msgid "Test notification"
+msgstr "Tester la notification"
+
+msgctxt "#30040"
+msgid "MAC address (e.g. DE:0B:86:8D:CE:16)"
+msgstr "Adresse MAC (ex : DE:0B:86:8D:CE:16)"
+
+msgctxt "#30041"
+msgid "Message ({pct} = percentage)"
+msgstr "Message ({pct} = pourcentage)"
+
+msgctxt "#30042"
+msgid "Title (empty = addon name)"
+msgstr "Titre (vide = nom de l'addon)"
+
+msgctxt "#30100"
+msgid "Bluetooth address of the keyboard. Use 'bluetoothctl devices' to find it."
+msgstr "Adresse Bluetooth du clavier. « bluetoothctl devices » pour la trouver."
+
+msgctxt "#30101"
+msgid "How often the service reads the keyboard battery."
+msgstr "Fréquence à laquelle le service interroge la batterie."
+
+msgctxt "#30102"
+msgid "Shows the battery level shortly after Kodi starts."
+msgstr "Affiche le niveau de batterie peu après le lancement de Kodi."
+
+msgctxt "#30103"
+msgid "Text shown at startup. {pct} is replaced by the percentage."
+msgstr "Texte affiché au démarrage. {pct} est remplacé par le pourcentage."
+
+msgctxt "#30104"
+msgid "Notify when the charge drops below the threshold."
+msgstr "Notifie quand la charge passe sous le seuil."
+
+msgctxt "#30105"
+msgid "Percentage triggering the threshold alert."
+msgstr "Pourcentage déclenchant l'alerte de seuil."
+
+msgctxt "#30106"
+msgid "Text of the threshold alert. {pct} = percentage."
+msgstr "Texte de l'alerte de seuil. {pct} = pourcentage."
+
+msgctxt "#30107"
+msgid "Urgent notification just before the battery runs out."
+msgstr "Notification urgente juste avant l'épuisement de la batterie."
+
+msgctxt "#30108"
+msgid "Percentage triggering the critical alert."
+msgstr "Pourcentage déclenchant l'alerte critique."
+
+msgctxt "#30109"
+msgid "Text of the critical alert. {pct} = percentage."
+msgstr "Texte de l'alerte critique. {pct} = pourcentage."
+
+msgctxt "#30110"
+msgid "Title shown on top of each notification. Empty = addon name."
+msgstr "Titre affiché en haut de chaque notification. Vide = nom de l'addon."
+
+msgctxt "#30111"
+msgid "How long the notification stays on screen."
+msgstr "Durée d'affichage de la notification à l'écran."
+
+msgctxt "#30112"
+msgid "Plays Kodi's default notification sound."
+msgstr "Joue le son de notification par défaut de Kodi."
+
+msgctxt "#30113"
+msgid "Shows a sample notification with the current settings."
+msgstr "Affiche une notification d'exemple avec les réglages courants."
+
+msgctxt "#30004"
+msgid "Home"
+msgstr "Accueil"
+
+msgctxt "#30060"
+msgid "Keyboard state"
+msgstr "État du clavier"
+
+msgctxt "#30061"
+msgid "Show keyboard state"
+msgstr "Afficher l'état du clavier"
+
+msgctxt "#30062"
+msgid "Refresh state"
+msgstr "Rafraîchir l'état"
+
+msgctxt "#30063"
+msgid "Shows the battery gauge and current state."
+msgstr "Affiche la jauge de batterie et l'état actuel."
+

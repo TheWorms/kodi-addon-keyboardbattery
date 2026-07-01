@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Builds
+*.zip
+dist/
+release.sh
