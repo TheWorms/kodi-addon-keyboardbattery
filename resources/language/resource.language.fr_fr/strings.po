@@ -175,3 +175,23 @@ msgctxt "#30063"
 msgid "Shows the battery gauge and current state."
 msgstr "Affiche la jauge de batterie et l'état actuel."
 
+msgctxt "#30013"
+msgid "Connection"
+msgstr "Connexion"
+
+msgctxt "#30034"
+msgid "Notify when the keyboard connects"
+msgstr "Notifier à la connexion du clavier"
+
+msgctxt "#30035"
+msgid "Connection message"
+msgstr "Message de connexion"
+
+msgctxt "#30114"
+msgid "Shows the battery level when the keyboard (re)connects."
+msgstr "Affiche le niveau de batterie quand le clavier se (re)connecte."
+
+msgctxt "#30115"
+msgid "Text of the connection notification. {pct} = percentage."
+msgstr "Texte de la notification de connexion. {pct} = pourcentage."
+

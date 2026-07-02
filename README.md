@@ -2,6 +2,10 @@
 
 # Keyboard Battery Monitor
 
+<!-- version:auto -->
+**Version : 1.5.0**
+<!-- /version:auto -->
+
 Addon Kodi (service + interface) qui affiche la **batterie** et les **informations**
 d'un clavier Bluetooth via BlueZ, avec un **écran d'état en couleur** et des
 **notifications personnalisables** (démarrage, seuil, alerte critique).

@@ -46,6 +46,20 @@
         </setting>
       </group>
 
+      <group id="4" label="30013">
+        <setting id="notify_connect" type="boolean" label="30034" help="30114">
+          <level>0</level><default>true</default>
+          <control type="toggle"/>
+        </setting>
+        <setting id="msg_connect" type="string" label="30035" help="30115">
+          <level>0</level>
+          <default>Clavier connecté — batterie : {pct}%</default>
+          <constraints><allowempty>true</allowempty></constraints>
+          <dependencies><dependency type="enable" setting="notify_connect">true</dependency></dependencies>
+          <control type="edit" format="string"><heading>30041</heading></control>
+        </setting>
+      </group>
+
       <group id="2" label="30011">
         <setting id="notify_threshold" type="boolean" label="30024" help="30104">
           <level>0</level><default>true</default>

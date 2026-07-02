@@ -2,6 +2,10 @@
 
 # Keyboard Battery Monitor
 
+<!-- version:auto -->
+**Version : 1.5.0**
+<!-- /version:auto -->
+
 Kodi addon (service + UI) that shows the **battery** and **information** of a
 Bluetooth keyboard through BlueZ, with a **colored status screen** and
 **customizable notifications** (startup, warning threshold, critical alert).
