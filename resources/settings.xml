@@ -16,7 +16,7 @@
       <group id="1">
         <setting id="mac" type="string" label="30020" help="30100">
           <level>0</level>
-          <default>DE:0B:86:8D:CE:16</default>
+          <default></default>
           <constraints><allowempty>true</allowempty></constraints>
           <control type="edit" format="string">
             <heading>30040</heading>

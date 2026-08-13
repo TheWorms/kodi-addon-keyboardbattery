@@ -37,7 +37,7 @@ def _mac_to_path_frag(mac):
 
 
 # ------------------------------------------------------------- connexion ---
-def _handle_connected():
+def _handle_connected(monitor):
     """Clavier vient de se (re)connecter : lire la batterie (avec retries,
     le temps que les services GATT soient resolus) puis notifier."""
     if not kt.s_bool('notify_connect', True):
@@ -47,7 +47,10 @@ def _handle_connected():
     mac = kt.get_mac()
     pct = None
     for _ in range(5):                      # jusqu'a ~10 s
-        time.sleep(2)
+        # Attente abortable : time.sleep bloquait l'extinction de Kodi
+        # jusqu'a 10 s si elle survenait pendant les retries.
+        if monitor.waitForAbort(2):
+            return
         pct, connected = kt.read_battery(mac)
         if pct is not None:
             break
@@ -96,7 +99,7 @@ def _dbus_monitor_loop(monitor, proc_holder):
                 is_true = 'true' in line
                 pending = False
                 if is_true and _mac_to_path_frag(kt.get_mac()) in cur_path:
-                    _handle_connected()
+                    _handle_connected(monitor)
     except Exception as e:
         kt.log("Moniteur D-Bus arrete: %s" % e, xbmc.LOGWARNING)
 

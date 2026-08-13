@@ -81,11 +81,22 @@ def load_state():
 
 
 def save_state(d):
+    # Ecriture atomique (fichier temporaire + os.replace) : le service et
+    # l'UI (default.py) tournent dans des processus distincts et peuvent
+    # ecrire en meme temps ; une ecriture directe pouvait laisser un
+    # state.json tronque (heuristique de charge reinitialisee).
+    path = _state_path()
+    tmp = path + '.tmp'
     try:
-        with open(_state_path(), 'w') as f:
+        with open(tmp, 'w') as f:
             json.dump(d, f)
+        os.replace(tmp, path)
     except Exception as e:
         log("save_state: %s" % e, xbmc.LOGWARNING)
+        try:
+            os.remove(tmp)
+        except Exception:
+            pass
 
 
 # ------------------------------------------------------------- notifications ---
@@ -139,6 +150,15 @@ def read_state(mac):
     st = load_state()
     last = st.get('pct')
     charging = bool(st.get('charging', False))
+
+    # TTL sur le releve precedent : comparer avec un pourcentage trop ancien
+    # (clavier replie des heures, recharge hors ligne...) produit un faux
+    # "en charge" a la reconnexion. Au-dela de 2x l'intervalle configure
+    # (plancher 15 min), le releve precedent est ignore.
+    last_ts = st.get('ts') or 0
+    max_age = max(s_int('interval', 30) * 2 * 60, 900)
+    if last_ts and (time.time() - last_ts) > max_age:
+        last = None
 
     if pct is not None and connected and isinstance(last, int):
         if pct > last:
