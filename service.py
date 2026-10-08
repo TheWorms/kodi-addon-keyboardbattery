@@ -80,6 +80,12 @@ def _dbus_monitor_loop(monitor, proc_holder):
                "desactivee" % e, xbmc.LOGWARNING)
         return
     proc_holder['proc'] = proc
+    # Abort demande AVANT ce Popen : _cleanup est deja passe (abort pendant
+    # les 45 premieres secondes de main) et personne ne terminerait ce
+    # dbus-monitor -> il survivait en processus orphelin a l'arret de Kodi.
+    if proc_holder.get('stopped'):
+        proc.terminate()
+        return
     kt.log("Ecoute des evenements de connexion Bluetooth (D-Bus)")
 
     cur_path = ''
@@ -102,6 +108,13 @@ def _dbus_monitor_loop(monitor, proc_holder):
                     _handle_connected(monitor)
     except Exception as e:
         kt.log("Moniteur D-Bus arrete: %s" % e, xbmc.LOGWARNING)
+    finally:
+        # Terminer dbus-monitor depuis CE thread, quoi qu'il arrive : si
+        # main() est deja sorti, _cleanup ne nous reverra jamais.
+        try:
+            proc.terminate()
+        except Exception:
+            pass
 
 
 # ---------------------------------------------------------------- batterie ---
@@ -140,7 +153,7 @@ def main():
     kt.log("Service demarre")
 
     # moniteur de connexion : thread bloquant sur dbus-monitor (0 polling)
-    proc_holder = {'proc': None}
+    proc_holder = {'proc': None, 'stopped': False}
     t = threading.Thread(target=_dbus_monitor_loop,
                          args=(monitor, proc_holder), daemon=True)
     t.start()
@@ -191,6 +204,10 @@ def main():
 
 
 def _cleanup(proc_holder):
+    # 'stopped' AVANT tout : si le thread lance son Popen apres ce cleanup
+    # (abort pendant les 45 premieres secondes de main), il saura qu'il
+    # doit terminer dbus-monitor lui-meme.
+    proc_holder['stopped'] = True
     proc = proc_holder.get('proc')
     if proc is not None:
         try:

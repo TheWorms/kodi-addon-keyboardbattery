@@ -86,7 +86,11 @@ def save_state(d):
     # ecrire en meme temps ; une ecriture directe pouvait laisser un
     # state.json tronque (heuristique de charge reinitialisee).
     path = _state_path()
-    tmp = path + '.tmp'
+    # tmp unique par processus : service et l'UI ecrivent tous deux
+    # state.json ; avec un tmp partage, le os.replace du plus rapide
+    # ecrasait l'ecriture en cours de l'autre (state.json tronque
+    # possible). Le suffixe pid supprime la course.
+    tmp = '%s.tmp.%d' % (path, os.getpid())
     try:
         with open(tmp, 'w') as f:
             json.dump(d, f)

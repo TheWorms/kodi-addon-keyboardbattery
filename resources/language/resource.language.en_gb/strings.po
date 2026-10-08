@@ -88,7 +88,7 @@ msgid "Test notification"
 msgstr ""
 
 msgctxt "#30040"
-msgid "MAC address (e.g. DE:0B:86:8D:CE:16)"
+msgid "MAC address (e.g. 00:11:22:33:44:55)"
 msgstr ""
 
 msgctxt "#30041"
