@@ -7,7 +7,7 @@
 # Keyboard Battery Monitor
 
 <!-- version:auto -->
-**Version : 1.5.4**
+**Version : 1.5.5**
 <!-- /version:auto -->
 
 Kodi addon (service + UI) that shows the **battery** and **information** of a
