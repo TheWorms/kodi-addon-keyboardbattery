@@ -32,6 +32,14 @@ def log(msg, level=xbmc.LOGINFO):
     xbmc.log("[%s] %s" % (ADDON_NAME, msg), level)
 
 
+def L(string_id, default=''):
+    """Texte traduit (strings.po) ; `default` si la chaine est absente."""
+    try:
+        return xbmcaddon.Addon().getLocalizedString(string_id) or default
+    except Exception:
+        return default
+
+
 # ---------------------------------------------------------------- reglages ---
 # Lecture sur une instance fraiche : garantit des valeurs a jour cote service
 # (un objet Addon() long-vivant peut mettre en cache les reglages).
@@ -254,22 +262,22 @@ def gauge_colored(pct, charging=False, segments=14):
 def status_colored(pct, connected, charging):
     """Ligne d'etat complete colorisee (jauge + % + etat)."""
     if pct is None:
-        return gauge_colored(None) + '  ' + _col('Déconnecté', C_DIM)
+        return gauge_colored(None) + '  ' + _col(L(30204, 'Déconnecté'), C_DIM)
     bar = gauge_colored(pct, charging)
     pct_c = C_CYAN if charging else _level_color(pct)
     pct_txt = _col('%d%%' % pct, pct_c)
     if not connected:
-        etat = _col('Sur batterie (dernier relevé)', C_DIM)
+        etat = _col(L(30205, 'Sur batterie (dernier relevé)'), C_DIM)
     elif charging:
-        etat = _col('⚡ En charge', C_CYAN)
+        etat = _col('⚡ ' + L(30206, 'En charge'), C_CYAN)
     else:
-        etat = 'Sur batterie'
+        etat = L(30207, 'Sur batterie')
     return '%s  %s · %s' % (bar, pct_txt, etat)
 
 
 def status_text(mac):
     """Lit la batterie et renvoie la ligne d'etat colorisee prete a afficher."""
     if not mac:
-        return 'Aucune adresse MAC configurée'
+        return L(30208, 'Aucune adresse MAC configurée')
     pct, connected, charging = read_state(mac)
     return status_colored(pct, connected, charging)

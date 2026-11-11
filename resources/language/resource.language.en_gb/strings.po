@@ -195,3 +195,106 @@ msgctxt "#30115"
 msgid "Text of the connection notification. {pct} = percentage."
 msgstr ""
 
+msgctxt "#30200"
+msgid "Keyboard disconnected (battery not readable)"
+msgstr ""
+
+msgctxt "#30201"
+msgid "(charging)"
+msgstr ""
+
+msgctxt "#30202"
+msgid "(last reading)"
+msgstr ""
+
+msgctxt "#30203"
+msgid "Set the keyboard MAC address in the settings"
+msgstr ""
+
+msgctxt "#30204"
+msgid "Disconnected"
+msgstr ""
+
+msgctxt "#30205"
+msgid "On battery (last reading)"
+msgstr ""
+
+msgctxt "#30206"
+msgid "Charging"
+msgstr ""
+
+msgctxt "#30207"
+msgid "On battery"
+msgstr ""
+
+msgctxt "#30208"
+msgid "No MAC address configured"
+msgstr ""
+
+msgctxt "#30209"
+msgid "yes"
+msgstr ""
+
+msgctxt "#30210"
+msgid "no"
+msgstr ""
+
+msgctxt "#30211"
+msgid "Keyboard"
+msgstr ""
+
+msgctxt "#30212"
+msgid "Type"
+msgstr ""
+
+msgctxt "#30213"
+msgid "Connected"
+msgstr ""
+
+msgctxt "#30214"
+msgid "Paired"
+msgstr ""
+
+msgctxt "#30215"
+msgid "Appearance"
+msgstr ""
+
+msgctxt "#30216"
+msgid "Battery"
+msgstr ""
+
+msgctxt "#30217"
+msgid "not available"
+msgstr ""
+
+msgctxt "#30218"
+msgid "Services"
+msgstr ""
+
+msgctxt "#30219"
+msgid "Unable to read the keyboard.[CR]Check that it is paired and that bluetoothd is running."
+msgstr ""
+
+msgctxt "#30220"
+msgid "Keyboard info"
+msgstr ""
+
+msgctxt "#30221"
+msgid "Keyboard status"
+msgstr ""
+
+msgctxt "#30222"
+msgid "No MAC address configured.[CR]Open the settings."
+msgstr ""
+
+msgctxt "#30224"
+msgid "Refresh"
+msgstr ""
+
+msgctxt "#30225"
+msgid "Test the notification"
+msgstr ""
+
+msgctxt "#30226"
+msgid "Settings"
+msgstr ""

@@ -195,3 +195,106 @@ msgctxt "#30115"
 msgid "Text of the connection notification. {pct} = percentage."
 msgstr "Texte de la notification de connexion. {pct} = pourcentage."
 
+msgctxt "#30200"
+msgid "Keyboard disconnected (battery not readable)"
+msgstr "Clavier déconnecté (batterie non lisible)"
+
+msgctxt "#30201"
+msgid "(charging)"
+msgstr "(en charge)"
+
+msgctxt "#30202"
+msgid "(last reading)"
+msgstr "(dernier relevé)"
+
+msgctxt "#30203"
+msgid "Set the keyboard MAC address in the settings"
+msgstr "Configurez l'adresse MAC du clavier dans les réglages"
+
+msgctxt "#30204"
+msgid "Disconnected"
+msgstr "Déconnecté"
+
+msgctxt "#30205"
+msgid "On battery (last reading)"
+msgstr "Sur batterie (dernier relevé)"
+
+msgctxt "#30206"
+msgid "Charging"
+msgstr "En charge"
+
+msgctxt "#30207"
+msgid "On battery"
+msgstr "Sur batterie"
+
+msgctxt "#30208"
+msgid "No MAC address configured"
+msgstr "Aucune adresse MAC configurée"
+
+msgctxt "#30209"
+msgid "yes"
+msgstr "oui"
+
+msgctxt "#30210"
+msgid "no"
+msgstr "non"
+
+msgctxt "#30211"
+msgid "Keyboard"
+msgstr "Clavier"
+
+msgctxt "#30212"
+msgid "Type"
+msgstr "Type"
+
+msgctxt "#30213"
+msgid "Connected"
+msgstr "Connecté"
+
+msgctxt "#30214"
+msgid "Paired"
+msgstr "Appairé"
+
+msgctxt "#30215"
+msgid "Appearance"
+msgstr "Apparence"
+
+msgctxt "#30216"
+msgid "Battery"
+msgstr "Batterie"
+
+msgctxt "#30217"
+msgid "not available"
+msgstr "non disponible"
+
+msgctxt "#30218"
+msgid "Services"
+msgstr "Services"
+
+msgctxt "#30219"
+msgid "Unable to read the keyboard.[CR]Check that it is paired and that bluetoothd is running."
+msgstr "Impossible de lire le clavier.[CR]Vérifiez qu'il est appairé et que bluetoothd tourne."
+
+msgctxt "#30220"
+msgid "Keyboard info"
+msgstr "Infos du clavier"
+
+msgctxt "#30221"
+msgid "Keyboard status"
+msgstr "État du clavier"
+
+msgctxt "#30222"
+msgid "No MAC address configured.[CR]Open the settings."
+msgstr "Aucune adresse MAC configurée.[CR]Ouvrez les réglages."
+
+msgctxt "#30224"
+msgid "Refresh"
+msgstr "Actualiser"
+
+msgctxt "#30225"
+msgid "Test the notification"
+msgstr "Tester la notification"
+
+msgctxt "#30226"
+msgid "Settings"
+msgstr "Réglages"

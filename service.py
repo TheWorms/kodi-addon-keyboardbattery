@@ -66,9 +66,35 @@ def _handle_connected(monitor):
     kt.log("Notification de connexion emise (%d%%)" % pct)
 
 
+_DBUS_RESTART_DELAY = 30  # secondes avant de relancer dbus-monitor
+
+
 def _dbus_monitor_loop(monitor, proc_holder):
+    """Garde l'ecoute D-Bus en vie : si dbus-monitor s'arrete (redemarrage
+    de BlueZ ou du bus systeme), il est relance apres une pause. Avant, les
+    notifications de connexion etaient perdues jusqu'au redemarrage de Kodi."""
+    short_runs = 0
+    while not monitor.abortRequested() and not proc_holder.get('stopped'):
+        started = time.time()
+        if not _dbus_monitor_once(monitor, proc_holder):
+            return
+        # dbus-monitor qui retombe aussitot a chaque essai (bus systeme
+        # inaccessible) : on n'insiste pas indefiniment.
+        short_runs = short_runs + 1 if time.time() - started < 10 else 0
+        if short_runs >= 5:
+            kt.log("dbus-monitor s'arrete aussitot lance : notification de "
+                   "connexion desactivee", xbmc.LOGWARNING)
+            return
+        if proc_holder.get('stopped') or monitor.waitForAbort(_DBUS_RESTART_DELAY):
+            return
+        kt.log("dbus-monitor arrete : relance de l'ecoute Bluetooth")
+
+
+def _dbus_monitor_once(monitor, proc_holder):
     """Lit (bloquant) les signaux PropertiesChanged de org.bluez.Device1.
-    Detecte 'Connected' -> boolean true pour la MAC configuree."""
+    Detecte 'Connected' -> boolean true pour la MAC configuree.
+    Retourne True si l'ecoute s'est arretee et peut etre relancee, False si
+    dbus-monitor est indisponible ou si l'arret est demande."""
     cmd = ['dbus-monitor', '--system',
            "type='signal',interface='org.freedesktop.DBus.Properties',"
            "member='PropertiesChanged',arg0='org.bluez.Device1'"]
@@ -78,14 +104,14 @@ def _dbus_monitor_loop(monitor, proc_holder):
     except Exception as e:
         kt.log("dbus-monitor indisponible (%s) : notification de connexion "
                "desactivee" % e, xbmc.LOGWARNING)
-        return
+        return False
     proc_holder['proc'] = proc
     # Abort demande AVANT ce Popen : _cleanup est deja passe (abort pendant
     # les 45 premieres secondes de main) et personne ne terminerait ce
     # dbus-monitor -> il survivait en processus orphelin a l'arret de Kodi.
     if proc_holder.get('stopped'):
         proc.terminate()
-        return
+        return False
     kt.log("Ecoute des evenements de connexion Bluetooth (D-Bus)")
 
     cur_path = ''
@@ -115,6 +141,11 @@ def _dbus_monitor_loop(monitor, proc_holder):
             proc.terminate()
         except Exception:
             pass
+        try:
+            proc.wait(timeout=5)  # pas de processus zombie entre deux relances
+        except Exception:
+            pass
+    return not monitor.abortRequested() and not proc_holder.get('stopped')
 
 
 # ---------------------------------------------------------------- batterie ---
@@ -172,14 +203,14 @@ def main():
             pct, connected, charging = kt.read_state(mac)
             critical = kt.s_int('critical_pct', 15)
             if pct is None:
-                kt.notify("Clavier deconnecte (batterie non lisible)")
+                kt.notify(kt.L(30200, 'Clavier déconnecté (batterie non lisible)'))
             else:
                 msg = kt.format_msg(
                     kt.s_str('msg_startup', 'Batterie clavier : {pct}%'), pct)
                 if charging:
-                    msg += " (en charge)"
+                    msg += ' ' + kt.L(30201, '(en charge)')
                 elif not connected:
-                    msg += " (dernier releve)"
+                    msg += ' ' + kt.L(30202, '(dernier relevé)')
                 _notify_battery(msg, warning=(pct <= critical))
 
     # ---- boucle de controle batterie (intervalle configure) ----
@@ -189,7 +220,7 @@ def main():
 
         if not mac:
             if not warned_no_mac:
-                kt.notify("Configurez l'adresse MAC du clavier dans les reglages",
+                kt.notify(kt.L(30203, "Configurez l'adresse MAC du clavier dans les réglages"),
                           warning=True, override_duration=10)
                 warned_no_mac = True
         else:
