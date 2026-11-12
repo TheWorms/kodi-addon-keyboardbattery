@@ -204,6 +204,15 @@ def main():
             critical = kt.s_int('critical_pct', 15)
             if pct is None:
                 kt.notify(kt.L(30200, 'Clavier déconnecté (batterie non lisible)'))
+            elif kt.s_bool('notify_critical', True) and pct <= critical:
+                # Une seule notification : l'alerte critique remplace le
+                # message de demarrage (elle suivait aussitot, en double).
+                _notify_battery(kt.format_msg(
+                    kt.s_str('msg_critical',
+                             'Batterie clavier presque vide : {pct}% - rechargez'),
+                    pct), warning=True)
+                state['crit'] = True
+                state['thr'] = True
             else:
                 msg = kt.format_msg(
                     kt.s_str('msg_startup', 'Batterie clavier : {pct}%'), pct)
@@ -212,6 +221,11 @@ def main():
                 elif not connected:
                     msg += ' ' + kt.L(30202, '(dernier relevé)')
                 _notify_battery(msg, warning=(pct <= critical))
+                # Le premier controle de seuil, juste apres, redisait la
+                # meme chose : il attend maintenant la prochaine remontee
+                # au-dessus du seuil.
+                if pct <= kt.s_int('threshold_pct', 80):
+                    state['thr'] = True
 
     # ---- boucle de controle batterie (intervalle configure) ----
     while not monitor.abortRequested():
@@ -225,7 +239,12 @@ def main():
                 warned_no_mac = True
         else:
             warned_no_mac = False
-            _battery_check(state)
+            try:
+                _battery_check(state)
+            except Exception as e:
+                # Un releve qui echoue ne doit pas arreter le service
+                # jusqu'au prochain redemarrage de Kodi.
+                kt.log("Controle batterie en erreur : %s" % e, xbmc.LOGERROR)
 
         if monitor.waitForAbort(interval * 60):
             break
